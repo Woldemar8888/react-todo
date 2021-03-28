@@ -11,3 +11,15 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.remove{
+  background: red;
+  border-radius: 50%;
+  color: white;
+  border: none;
+  outline: none;
+}
+
+.done{
+  text-decoration: line-through;
+}
