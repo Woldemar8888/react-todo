@@ -1,6 +1,8 @@
 import './App.css';
 import TodoList from "./Todo/TodoList";
 import {useState} from  'react';
+import Context from "./context";
+import AddTodo from "./Todo/AddTodo";
 
 function App() {
     let [todos, setTodus] = useState( [
@@ -22,15 +24,31 @@ function App() {
         setTodus(todos.filter(todo => todo.id !== id ))
     }
 
+    function addTodo(title){
+      setTodus(todos.concat([{
+          title,
+          id: Date.now(),
+          completed: false
+      }]))
+    }
+
   return (
-    <div className="App">
-        <h1>Todo list</h1>
-        <TodoList
-          todos = {todos}
-          onToggle = {toggleTodo}
-          delete = {deleteTodo}
-        />
-    </div>
+      <Context.Provider value={{deleteTodo}}>
+          <div className="App">
+              <h1>Todo list</h1>
+              <AddTodo onCreate={addTodo}/>
+              {todos.length ?
+                  <TodoList
+                      todos = {todos}
+                      onToggle = {toggleTodo}
+                  />
+                  :
+                  <p>No todos</p>
+              }
+
+          </div>
+      </Context.Provider>
+
   );
 }
 

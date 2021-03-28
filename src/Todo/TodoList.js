@@ -19,7 +19,6 @@ function TodoList(props){
                    key={todo.id}
                    index={index}
                    onChange={props.onToggle}
-                   onClick={props.delete}
                />
            }
            )}
